@@ -6,7 +6,11 @@ module.exports = {
 };
 
 function success(item) {
-  return { ...item };
+  if (item.level === 20) {
+    return item;
+  } else {
+    return { ...item, level: item.level + 1 };
+  }
 }
 
 function fail(item) {
