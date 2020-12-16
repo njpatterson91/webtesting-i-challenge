@@ -66,3 +66,15 @@ describe("Fail enhancer function", () => {
     expect(thirdFailure.level).toBe(15);
   });
 });
+
+describe("Repair item", () => {
+  let repair = {
+    name: "the sword",
+    durability: 95,
+    level: 14,
+  };
+  it("Fully repaird", () => {
+    const repaired = enhancer.repair(repair);
+    expect(repaired.durability).toBe(100);
+  });
+});
