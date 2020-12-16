@@ -33,3 +33,36 @@ describe("Success enhancer function", () => {
     expect(maxLevel.level).toBe(20);
   });
 });
+describe("Fail enhancer function", () => {
+  let firstFail = {
+    name: "the sword",
+    durability: 95,
+    level: 14,
+  };
+  let secondFail = {
+    name: "the sword",
+    durability: 95,
+    level: 15,
+  };
+  let thirdFail = {
+    name: "the sword",
+    durability: 95,
+    level: 16,
+  };
+  it("Is defined", () => {
+    expect(enhancer.fail).toBeDefined();
+  });
+  it("Failure level less than 15", () => {
+    const firstFailure = enhancer.fail(firstFail);
+    expect(firstFailure.durability).toBe(90);
+  });
+  it("Failure level 15", () => {
+    const secondFailure = enhancer.fail(secondFail);
+    expect(secondFailure.durability).toBe(85);
+  });
+  it("Failure level greter than 15", () => {
+    const thirdFailure = enhancer.fail(thirdFail);
+    expect(thirdFailure.durability).toBe(85);
+    expect(thirdFailure.level).toBe(15);
+  });
+});
